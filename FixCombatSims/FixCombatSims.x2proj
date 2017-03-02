@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{da8f7899-13f4-4cb8-8304-48143c1b0aaf}</ProjectGuid>
+    <Guid>da8f7899-13f4-4cb8-8304-48143c1b0aaf</Guid>
+    <Name>Fix Combat Sims</Name>
+    <Description>Fix issues with PCS chips disappearing from soldiers, but still providing stat bonuses.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>FixCombatSims</AssemblyName>
+    <RootNamespace>FixCombatSims</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Src\" />
+    <Folder Include="Src\FixCombatSims\" />
+    <Folder Include="Src\FixCombatSims\Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+    <Content Include="ModPreview.jpg" />
+    <Content Include="Config\XComEditor.ini" />
+    <Content Include="Config\XComEngine.ini" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>
