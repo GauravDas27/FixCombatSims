@@ -24,9 +24,6 @@
     <Content Include="ModPreview.jpg" />
     <Content Include="Config\XComEditor.ini" />
     <Content Include="Config\XComEngine.ini" />
-    <Content Include="Src\FixCombatSims\Classes\UIInventory_FixCombatSims.uc">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Src\FixCombatSims\Classes\UIScreenListener_FixCombatSims.uc">
       <SubType>Content</SubType>
     </Content>
