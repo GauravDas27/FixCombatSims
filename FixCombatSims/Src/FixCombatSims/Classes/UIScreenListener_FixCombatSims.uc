@@ -1,7 +1,7 @@
 class UIScreenListener_FixCombatSims extends UIScreenListener config(FixCombatSims);
 
 var config array<name> CombatSims;
-var config bool SILENT_FIX;
+var config bool FIX_SILENTLY;
 
 var UIArmory_MainMenu Armory;
 var XComGameState_Unit Unit;
@@ -31,7 +31,7 @@ function PopulateData(UIArmory_MainMenu Armory)
 
 	// TODO : override PCS option on UIArmory_MainMenu screen
 	ListItem = UIListItemString(Armory.List.GetItem(2));
-	if (ListItem == None || SILENT_FIX)
+	if (ListItem == None || FIX_SILENTLY)
 	{
 		// if list item is not found or SILENT_FIX is enabled in config; silently fix combat sims and refresh UI
 		`log("FixCombatSims: Fixing silently " $ Unit.GetFullName());
@@ -46,9 +46,18 @@ function PopulateData(UIArmory_MainMenu Armory)
 
 function OnClick(UIButton Button)
 {
-	`log("FixCombatSims: Fixing " $ Unit.GetFullName());
-	FixBadCombatSims();
-	Armory.CycleToSoldier(Armory.UnitReference);
+	local UIScreenStack ScreenStack;
+	local XComHQPresentationLayer PresLayer;
+	local UIInventory_FixCombatSims UiFcs;
+
+	ScreenStack = `SCREENSTACK;
+	PresLayer = `HQPRES;
+	if (ScreenStack.IsNotInStack(class'UIInventory_FixCombatSims'))
+	{
+		UiFcs = PresLayer.Spawn(class'UIInventory_FixCombatSims', PresLayer);
+		UiFcs.Init(Unit, BadCombatSims);
+		ScreenStack.Push(UiFcs, PresLayer.Get3DMovie());
+	}
 }
 
 function PopulateBadCombatSims()
@@ -56,8 +65,6 @@ function PopulateBadCombatSims()
 	local array<XComGameState_Item> UnitItems;
 	local XComGameState_Item Item;
 	local int Index;
-
-	//`log("FixCombatSims: Checking " $ Unit.GetFullName());
 
 	BadCombatSims.Length = 0;
 	UnitItems = Unit.GetAllInventoryItems();
@@ -77,10 +84,10 @@ function PopulateBadCombatSims()
 
 function FixBadCombatSims()
 {
+	local XComGameState_Item CombatSim;
 	local XComGameState UpdatedState;
 	local XComGameState_Unit UpdatedUnit;
 	local XComGameState_HeadquartersXCom UpdatedHq;
-	local XComGameState_Item CombatSim;
 
 	UpdatedState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Fix Personal Combat Sims");
 	UpdatedUnit = Unit;
@@ -98,10 +105,11 @@ function FixBadCombatSims()
 		UpdatedHq.PutItemInInventory(UpdatedState, CombatSim);
 	}
 
-	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Strategy_UI_PCS_Equip");
 	`GAMERULES.SubmitGameState(UpdatedState);
+	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Strategy_UI_PCS_Equip");
 
-	`log("FixCombatSims: Unit fixed");
+	Unit = UpdatedUnit;
+	`log("FixCombatSims: Fixed unit " $ Unit.GetFullName());
 }
 
 defaultproperties
