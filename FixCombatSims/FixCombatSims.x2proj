@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{da8f7899-13f4-4cb8-8304-48143c1b0aaf}</ProjectGuid>
@@ -17,10 +17,19 @@
     <Folder Include="Src\FixCombatSims\Classes\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\XComFixCombatSims.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ReadMe.txt" />
     <Content Include="ModPreview.jpg" />
     <Content Include="Config\XComEditor.ini" />
     <Content Include="Config\XComEngine.ini" />
+    <Content Include="Src\FixCombatSims\Classes\UIInventory_FixCombatSims.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\FixCombatSims\Classes\UIScreenListener_FixCombatSims.uc">
+      <SubType>Content</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
 </Project>
