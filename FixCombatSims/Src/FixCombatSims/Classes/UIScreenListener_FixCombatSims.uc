@@ -40,7 +40,6 @@ function PopulateData(UIArmory_MainMenu Armory)
 		return;
 	}
 
-	ListItem.EnableListItem();
 	ListItem.SetBad(true);
 	ListItem.ButtonBG.OnClickedDelegate = OnClick;
 }
