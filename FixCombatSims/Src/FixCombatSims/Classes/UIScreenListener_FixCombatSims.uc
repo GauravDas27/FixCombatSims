@@ -46,6 +46,7 @@ function PopulateData(UIArmory_MainMenu Armory)
 	ListItem.MCName = 'ArmoryMainMenu_FixCombatSimsButton';
 	ListItem.SetBad(true);
 	ListItem.NeedsAttention(true);
+	ListItem.SetDisabled(Unit.GetStatus() == eStatus_OnMission);
 	ListItem.ButtonBG.OnClickedDelegate = OnClick;
 
 	PcsItem = Armory.List.GetChildByName('ArmoryMainMenu_PCSButton', false);
@@ -97,7 +98,6 @@ function PopulateBadCombatSims()
 		if (Index != INDEX_NONE)
 		{
 			// found bad combat sim
-			`log("FixCombatSims: Found " $ Item.GetMyTemplateName());
 			BadCombatSims.AddItem(Item);
 		}
 	}
