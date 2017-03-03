@@ -1,5 +1,19 @@
 class UIListHelper extends Object;
 
+simulated function int GetItemIndex(UIList List, name MCName)
+{
+	local UIPanel Control; 
+	local int Index;
+
+	foreach List.ItemContainer.ChildPanels(Control, Index)
+	{
+		if( Control.MCName == MCName )
+			return Index;
+	}
+	
+	return INDEX_NONE;
+}
+
 simulated function UIPanel GetItemWithMCName(UIList List, name MCName)
 {
 	local UIPanel Control; 
