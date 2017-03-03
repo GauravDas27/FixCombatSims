@@ -23,6 +23,7 @@ event OnReceiveFocus(UIScreen Screen)
 function PopulateData(UIArmory_MainMenu Armory)
 {
 	local UIListItemString ListItem;
+	local UIPanel PcsItem;
 	local int Index;
 
 	if (Armory == None) return; // called from unknown screen
@@ -47,7 +48,8 @@ function PopulateData(UIArmory_MainMenu Armory)
 	ListItem.NeedsAttention(true);
 	ListItem.ButtonBG.OnClickedDelegate = OnClick;
 
-	Index = class'UIList_Helper'.static.GetItemIndex(Armory.List, 'ArmoryMainMenu_PCSButton');
+	PcsItem = Armory.List.GetChildByName('ArmoryMainMenu_PCSButton');
+	Index = PcsItem == None ? INDEX_NONE : Armory.List.GetChildIndex(PcsItem);
 	if (Index != INDEX_NONE)
 	{
 		class'UIList_Helper'.static.MoveItemToIndex(Armory.List, ListItem, Index + 1);

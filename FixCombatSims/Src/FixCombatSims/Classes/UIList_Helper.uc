@@ -1,32 +1,5 @@
 class UIList_Helper extends Object;
 
-static function int GetItemIndex(UIList List, name MCName)
-{
-	local UIPanel Control; 
-	local int Index;
-
-	foreach List.ItemContainer.ChildPanels(Control, Index)
-	{
-		if( Control.MCName == MCName )
-			return Index;
-	}
-	
-	return INDEX_NONE;
-}
-
-static function UIPanel GetItemWithMCName(UIList List, name MCName)
-{
-	local UIPanel Control; 
-
-	foreach List.ItemContainer.ChildPanels(Control)
-	{
-		if( Control.MCName == MCName )
-			return Control;
-	}
-	
-	return none;
-}
-
 static function MoveItemToIndex(UIList List, UIPanel Item, int NewIndex)
 {
 	local int StartingIndex, ItemIndex;
