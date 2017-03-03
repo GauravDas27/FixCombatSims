@@ -1,6 +1,6 @@
-class UIListHelper extends Object;
+class UIList_Helper extends Object;
 
-simulated function int GetItemIndex(UIList List, name MCName)
+static function int GetItemIndex(UIList List, name MCName)
 {
 	local UIPanel Control; 
 	local int Index;
@@ -14,7 +14,7 @@ simulated function int GetItemIndex(UIList List, name MCName)
 	return INDEX_NONE;
 }
 
-simulated function UIPanel GetItemWithMCName(UIList List, name MCName)
+static function UIPanel GetItemWithMCName(UIList List, name MCName)
 {
 	local UIPanel Control; 
 
@@ -27,7 +27,7 @@ simulated function UIPanel GetItemWithMCName(UIList List, name MCName)
 	return none;
 }
 
-simulated function MoveItemToIndex(UIList List, UIPanel Item, int NewIndex)
+static function MoveItemToIndex(UIList List, UIPanel Item, int NewIndex)
 {
 	local int StartingIndex, ItemIndex;
 
