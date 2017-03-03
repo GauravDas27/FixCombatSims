@@ -26,6 +26,9 @@
     <Content Include="Src\FixCombatSims\Classes\UIInventory_FixCombatSims.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\FixCombatSims\Classes\UIList_Helper.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\FixCombatSims\Classes\UIScreenListener_FixCombatSims.uc">
       <SubType>Content</SubType>
     </Content>
