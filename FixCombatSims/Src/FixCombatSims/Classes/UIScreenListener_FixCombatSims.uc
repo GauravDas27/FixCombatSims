@@ -65,22 +65,17 @@ simulated function MoveItemToIndex(UIList List, UIPanel Item, int NewIndex)
 			List.GetSelectedItem().OnLoseFocus();
 
 		ItemIndex = StartingIndex;
-
-		if (NewIndex < StartingIndex)
+		while(ItemIndex > NewIndex)
 		{
-			while(ItemIndex > NewIndex)
-			{
-				List.ItemContainer.SwapChildren(ItemIndex, ItemIndex - 1);
-				ItemIndex--;
-			}
+			List.ItemContainer.SwapChildren(ItemIndex, ItemIndex - 1);
+			ItemIndex--;
 		}
-		else if (NewIndex > StartingIndex)
+
+		ItemIndex = StartingIndex;
+		while(ItemIndex < NewIndex)
 		{
-			while(ItemIndex < NewIndex)
-			{
-				List.ItemContainer.SwapChildren(ItemIndex, ItemIndex + 1);
-				ItemIndex++;
-			}
+			List.ItemContainer.SwapChildren(ItemIndex, ItemIndex + 1);
+			ItemIndex++;
 		}
 
 		List.RealizeItems();
