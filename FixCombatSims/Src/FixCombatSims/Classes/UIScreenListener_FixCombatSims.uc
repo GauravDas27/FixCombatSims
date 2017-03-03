@@ -56,9 +56,17 @@ function PopulateData(UIArmory_MainMenu Armory)
 
 function OnClick(UIButton Button)
 {
+	local UIListItemString Parent;
 	local UIScreenStack ScreenStack;
 	local XComHQPresentationLayer PresLayer;
 	local UIInventory_FixCombatSims UiFcs;
+
+	Parent = UIListItemString(Button.ParentPanel);
+	if (Parent != None && Parent.bDisabled)
+	{
+		`XSTRATEGYSOUNDMGR.PlaySoundEvent("Play_MenuClickNegative");
+		return;
+	}
 
 	ScreenStack = `SCREENSTACK;
 	PresLayer = `HQPRES;
@@ -68,6 +76,7 @@ function OnClick(UIButton Button)
 		UiFcs.Init(Unit, BadCombatSims);
 		ScreenStack.Push(UiFcs, PresLayer.Get3DMovie());
 	}
+	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Play_MenuSelect");
 }
 
 function PopulateBadCombatSims()
