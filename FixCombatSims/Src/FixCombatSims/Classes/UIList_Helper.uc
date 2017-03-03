@@ -1,17 +1,26 @@
 class UIListHelper extends Object;
 
+simulated function UIPanel GetItemWithMCName(UIList List, name MCName)
+{
+	local UIPanel Control; 
+
+	foreach List.ItemContainer.ChildPanels(Control)
+	{
+		if( Control.MCName == MCName )
+			return Control;
+	}
+	
+	return none;
+}
+
 simulated function MoveItemToIndex(UIList List, UIPanel Item, int NewIndex)
 {
 	local int StartingIndex, ItemIndex;
 
 	if (NewIndex < 0)
-	{
 		NewIndex = List.ItemCount;
-	}
 	else if (NewIndex >= List.ItemCount)
-	{
 		NewIndex = List.ItemCount - 1;
-	}
 
 	StartingIndex = List.GetItemIndex(Item);
 
