@@ -1,0 +1,6 @@
+[UIScreenListener_FixCombatSims]
+m_strFixCombatSims=REMOVE MERGED PCS
+
+[UIInventory_FixCombatSims]
+m_strTitle=REMOVE PERSONAL COMBAT SIM
+m_strInventoryLabel=EQUIPPED

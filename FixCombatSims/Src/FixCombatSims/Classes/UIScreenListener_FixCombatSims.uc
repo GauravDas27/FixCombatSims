@@ -3,6 +3,8 @@ class UIScreenListener_FixCombatSims extends UIScreenListener config(FixCombatSi
 var config array<name> CombatSims;
 var config bool FIX_SILENTLY;
 
+var localized string m_strFixCombatSims;
+
 var UIArmory_MainMenu Armory;
 var XComGameState_Unit Unit;
 var array<XComGameState_Item> BadCombatSims;
@@ -21,6 +23,7 @@ event OnReceiveFocus(UIScreen Screen)
 function PopulateData(UIArmory_MainMenu Armory)
 {
 	local UIListItemString ListItem;
+	local int Index;
 
 	if (Armory == None) return; // called from unknown screen
 
@@ -29,19 +32,26 @@ function PopulateData(UIArmory_MainMenu Armory)
 
 	if (BadCombatSims.Length <= 0) return; // unit is good
 
-	// TODO : override PCS option on UIArmory_MainMenu screen
-	ListItem = UIListItemString(Armory.List.GetItem(2));
-	if (ListItem == None || FIX_SILENTLY)
+	if (FIX_SILENTLY)
 	{
-		// if list item is not found or SILENT_FIX is enabled in config; silently fix combat sims and refresh UI
+		// silently fix combat sims and refresh UI
 		`log("FixCombatSims: Fixing silently " $ Unit.GetFullName());
 		FixBadCombatSims();
 		Armory.CycleToSoldier(Armory.UnitReference);
 		return;
 	}
 
+	ListItem = Armory.Spawn(class'UIListItemString', Armory.List.ItemContainer).InitListItem(m_strFixCombatSims); 
+	ListItem.MCName = 'ArmoryMainMenu_FixCombatSimsButton';
 	ListItem.SetBad(true);
+	ListItem.NeedsAttention(true);
 	ListItem.ButtonBG.OnClickedDelegate = OnClick;
+
+	Index = class'UIList_Helper'.static.GetItemIndex(Armory.List, 'ArmoryMainMenu_PCSButton');
+	if (Index != INDEX_NONE)
+	{
+		class'UIList_Helper'.static.MoveItemToIndex(Armory.List, ListItem, Index + 1);
+	}
 }
 
 function OnClick(UIButton Button)

@@ -11,12 +11,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Config\" />
+    <Folder Include="Localization" />
     <Folder Include="Src\" />
     <Folder Include="Src\FixCombatSims\" />
     <Folder Include="Src\FixCombatSims\Classes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComFixCombatSims.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\FixCombatSims.int">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ReadMe.txt" />

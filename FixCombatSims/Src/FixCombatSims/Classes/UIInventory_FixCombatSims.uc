@@ -11,10 +11,6 @@ function Init(XComGameState_Unit Unit, array<XComGameState_Item> BadCombatSims)
 
 simulated function InitScreen(XComPlayerController InitController, UIMovie InitMovie, optional name InitName)
 {
-	m_strTitle = class'UIInventory_Implants'.default.m_strTitle;
-	m_strInventoryLabel = "";
-	m_strTotalLabel = "";
-
 	super.InitScreen(InitController, InitMovie, InitName);
 
 	`log("FixCombatSims: Unit " $ Unit.GetFullName());
