@@ -48,8 +48,8 @@ function PopulateData(UIArmory_MainMenu Armory)
 	ListItem.NeedsAttention(true);
 	ListItem.ButtonBG.OnClickedDelegate = OnClick;
 
-	PcsItem = Armory.List.GetChildByName('ArmoryMainMenu_PCSButton');
-	Index = PcsItem == None ? INDEX_NONE : Armory.List.GetChildIndex(PcsItem);
+	PcsItem = Armory.List.GetChildByName('ArmoryMainMenu_PCSButton', false);
+	Index = PcsItem == None ? INDEX_NONE : Armory.List.GetItemIndex(PcsItem);
 	if (Index != INDEX_NONE)
 	{
 		class'UIList_Helper'.static.MoveItemToIndex(Armory.List, ListItem, Index + 1);
