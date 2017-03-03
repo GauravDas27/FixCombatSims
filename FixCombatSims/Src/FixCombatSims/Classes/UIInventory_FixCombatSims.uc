@@ -37,7 +37,7 @@ simulated function PopulateData()
 
 	foreach BadCombatSims(CombatSim)
 	{
-		UIInventory_ListItem(List.CreateItem(class'UIInventory_ListItem')).InitInventoryListItem(CombatSim.GetMyTemplate(), 0, CombatSim.GetReference());
+		UIInventory_ListItem(List.CreateItem(class'UIInventory_ListItem')).InitInventoryListItem(CombatSim.GetMyTemplate(), CombatSim.Quantity, CombatSim.GetReference());
 	}
 
 	ListItem = UIInventory_ListItem(List.GetItem(0));
